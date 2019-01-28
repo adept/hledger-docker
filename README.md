@@ -43,8 +43,6 @@ docker run -d -v "$HOME/hledger-data:/data" -p 5000:5000 dastapov/hledger
 You can use this image to run command-line version of hledger (or hledger-iadd, hledger-ui, ...) by
 providing alternative start command to `docker run`.
 
-### Usage
-
 You can just drop into a shell in container and run hledger there:
 ```
 docker run --rm -v "$HOME/hledger-data:/data" dastapov/hledger bash
@@ -58,3 +56,12 @@ docker run --rm -v "$HOME/hledger-data:/data" dastapov/hledger hledger -f /data/
 
 Make sure you provide `--rm` agrument to `docker run`, otherwise your containers will be kept in container
 registry even after you are done with them, which is probably not what you want.
+
+### Using image for hledger development
+
+You can use the supplied Dockerfile to get yourself an image for hledger development. Build target `dev`
+will get you Debian-based image with `stack` and all the build dependencies of `hledger` installed:
+
+```
+docker image build --tag hledger-dev --target dev .
+```
