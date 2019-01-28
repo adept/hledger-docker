@@ -13,11 +13,13 @@ associated tools:
 
 ### Hledger-web + hledger-api
 
-By default, container will start hledger-web on port 5000 and hledger-api on port 5001, both of them reading journal `hledger.journal` from volume `data`:
+By default, container will start hledger-web on port 5000 and hledger-api on port 5001, both of them reading journal `hledger.journal` from volume `data`, so you can run:
 
 ```
-docker run -d -v "$HOME/hledger-data:/data" -p 5000:5000 dastapov/hledger
+docker run -d -v "$HOME/hledger-data:/data" -p 5000:5000 -p 5001:5001 dastapov/hledger
 ```
+
+and navigate to `http://localhost:5000` for hledger-web and URLs like `http://localhost:5001/api/v1/accounts` for hledger-api.
 
 #### Environment variables
 
@@ -43,9 +45,9 @@ docker run -d -v "$HOME/hledger-data:/data" -p 5000:5000 dastapov/hledger
 You can use this image to run command-line version of hledger (or hledger-iadd, hledger-ui, ...) by
 providing alternative start command to `docker run`.
 
-You can just drop into a shell in container and run hledger there:
+You can just drop into a shell in container and run hledger there (remember to include `-it`):
 ```
-docker run --rm -v "$HOME/hledger-data:/data" dastapov/hledger bash
+docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger bash
 ```
 
 Or you can replace `bash` with a suitable invocation of `hledger`:
