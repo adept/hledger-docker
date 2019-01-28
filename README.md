@@ -3,11 +3,11 @@
 This docker image provides [hledger](http://hledger.org/), the plain text accounting software, and
 associated tools:
 
- * hledger-web, web interface for hledger
- * hledger-ui, curses interface for hledger
- * hledger-iadd, interactive console frontend for "hledger add"
- * hledger-api, which server hledger data and reports as a JSON web API
- * hledger-diff, tool to diff journal files
+ * hledger-web, the web interface for hledger
+ * hledger-ui, the curses interface for hledger
+ * hledger-iadd, the interactive console frontend for "hledger add"
+ * hledger-api, which serves hledger data and reports as a JSON web API
+ * hledger-diff, the tool to diff journal files
 
 ## Usage
 
@@ -45,7 +45,7 @@ and navigate to `http://localhost:5000` for hledger-web and URLs like `http://lo
 You can use this image to run command-line version of hledger (or hledger-iadd, hledger-ui, ...) by
 providing alternative start command to `docker run`.
 
-You can just drop into a shell in container and run hledger there (remember to include `-it`):
+You can just drop into a shell in the container and run hledger there (remember to include `-it`):
 ```
 docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger bash
 ```
@@ -56,7 +56,7 @@ Or you can replace `bash` with a suitable invocation of `hledger`:
 docker run --rm -v "$HOME/hledger-data:/data" dastapov/hledger hledger -f /data/hledger.journal stats
 ```
 
-Make sure you provide `--rm` agrument to `docker run`, otherwise your containers will be kept in container
+Make sure you provide `--rm` argument to `docker run`, otherwise your containers will be kept in the container
 registry even after you are done with them, which is probably not what you want.
 
 ### Using image for hledger development
