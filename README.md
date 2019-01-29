@@ -50,7 +50,7 @@ You can just drop into a shell in the container and run hledger there (remember 
 docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger bash
 ```
 
-Or you can replace `bash` with a suitable invocation of `hledger`:
+Alternatively, you can replace `bash` with a suitable invocation of `hledger`:
 
 ```
 docker run --rm -v "$HOME/hledger-data:/data" dastapov/hledger hledger -f /data/hledger.journal stats
