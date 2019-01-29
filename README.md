@@ -13,20 +13,17 @@ associated tools:
 
 ### Hledger-web + hledger-api
 
-By default, container will start hledger-web on port 5000 and hledger-api on port 5001, both of them reading journal `hledger.journal` from volume `data`, so you can run:
+By default, container will start hledger-web on port 5000 and hledger-api on port 5001, both of them reading journal `hledger.journal` from volume `data`, so assuming your journal is in `~/journals/all.journal`, you can run:
 
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=<name-of-your.journal> -v "<directory with your journals>:/data" -p 5000:5000 -p 5001:5001 dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 -p 5001:5001 dastapov/hledger
 ```
 
 and navigate to `http://localhost:5000` for hledger-web and URLs like `http://localhost:5001/api/v1/accounts` for hledger-api.
 
-Journal file name is relative to the directory you provided to the `-v` commandline argument.
-
 If you have LEDGER_FILE environmed variable defined already, you can try:
-
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 -p 5001:5001 dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 -p 5001:5001 dastapov/hledger
 ```
 
 #### Environment variables
