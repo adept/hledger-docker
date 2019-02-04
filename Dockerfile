@@ -7,8 +7,8 @@ RUN stack install --resolver=lts-13 \
     config-ini-0.2.4.0 \
     data-clist-0.1.2.2 \
     word-wrap-0.4.1 \
-    hledger-lib-1.13 \
-    hledger-1.13 \
+    hledger-lib-1.13.1 \
+    hledger-1.13.2 \
     hledger-ui-1.13.1 \
     hledger-web-1.13 \
     hledger-api-1.13 \
