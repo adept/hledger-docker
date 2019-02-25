@@ -8,6 +8,7 @@ associated tools:
  * hledger-iadd, the interactive console frontend for "hledger add"
  * hledger-api, which serves hledger data and reports as a JSON web API
  * hledger-diff, the tool to diff journal files
+ * [hledger-interest](https://github.com/peti/hledger-interest), tool to compute interest for loan/mortgage accounts
 
 ## Usage
 
@@ -71,4 +72,9 @@ will get you Debian-based image with `stack` and all the build dependencies of `
 
 ```
 docker image build --tag hledger-dev --target dev .
+```
+
+Alternatively, you can use pre-built image via:
+```
+docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger:latest-dev bash
 ```
