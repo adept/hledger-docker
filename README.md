@@ -72,3 +72,8 @@ will get you Debian-based image with `stack` and all the build dependencies of `
 ```
 docker image build --tag hledger-dev --target dev .
 ```
+
+Alternatively, you can use pre-built image via:
+```
+docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger:latest-dev bash
+```
