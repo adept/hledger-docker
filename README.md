@@ -8,6 +8,7 @@ associated tools:
  * hledger-iadd, the interactive console frontend for "hledger add"
  * hledger-api, which serves hledger data and reports as a JSON web API
  * hledger-diff, the tool to diff journal files
+ * [hledger-interest](https://github.com/peti/hledger-interest), tool to compute interest for loan/mortgage accounts
 
 ## Usage
 
