@@ -1,7 +1,9 @@
-FROM haskell as dev
+FROM haskell:latest as dev
 
-RUN stack setup --resolver=lts-13
-RUN stack install --resolver=lts-13 \
+ENV RESOLVER lts-13.8
+
+RUN stack setup --resolver=$RESOLVER
+RUN stack install --resolver=$RESOLVER \
     brick-0.46 \
     text-zipper-0.10.1 \
     config-ini-0.2.4.0 \
@@ -13,7 +15,8 @@ RUN stack install --resolver=lts-13 \
     hledger-web-1.13 \
     hledger-api-1.13 \
     hledger-diff-0.2.0.14 \
-    hledger-iadd-1.3.8
+    hledger-iadd-1.3.8 \
+    hledger-interest
 
 FROM debian:stable-slim
 
