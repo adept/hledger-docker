@@ -27,6 +27,11 @@ If you have LEDGER_FILE environmed variable defined already, you can try:
 docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 -p 5001:5001 --user $(id --user) dastapov/hledger
 ```
 
+Github repo contains helper script that simplifies invocation:
+```
+./run.sh ~/journals/all.journal web
+```
+
 #### Environment variables
 
  * `HLEDGER_JOURNAL_FILE`
@@ -46,7 +51,7 @@ docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(
  * `HLEDGER_RULES_FILE`
    * CSV conversion rules file (default: /data/hledger.rules)
 
-### hledger cli
+### hledger cli in the shell
 
 You can use this image to run command-line version of hledger (or hledger-iadd, hledger-ui, ...) by
 providing alternative start command to `docker run`.
@@ -56,7 +61,14 @@ You can just drop into a shell in the container and run hledger there (remember 
 docker run --rm -it -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger bash
 ```
 
-Alternatively, you can replace `bash` with a suitable invocation of `hledger`:
+Github repo contains helper script that simplifies invocation:
+```
+./run.sh ~/journals/all.journal bash
+```
+
+### hledger cli via docker run
+
+You can use `docker run` to invoke `hledger` directly:
 
 ```
 docker run --rm -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger hledger -f /data/hledger.journal stats
@@ -74,7 +86,7 @@ will get you Debian-based image with `stack` and all the build dependencies of `
 docker image build --tag hledger-dev --target dev .
 ```
 
-Alternatively, you can use pre-built image via:
+Alternatively, you can use pre-built image via `latest-dev` or `VERSION-dev` tags:
 ```
 docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger:latest-dev bash
 ```
