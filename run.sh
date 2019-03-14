@@ -25,4 +25,4 @@ docker container run --rm -it --volume "$dir:/data" \
        --env HLEDGER_FILE_NAME=/data/$file \
        --env LEDGER_FILE=/data/$file \
        -p 5000:5000 -p 5001:5001 \
-       hledger $extra_args "$@"
+       dastapov/hledger $extra_args "$@"
