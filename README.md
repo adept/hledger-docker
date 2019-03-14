@@ -37,6 +37,11 @@ Github repo contains helper script that simplifies invocation:
 ./run.sh ~/journals/all.journal web
 ```
 
+Github repo contains helper script that simplifies invocation:
+```
+./run.sh ~/journals/all.journal web
+```
+
 #### Environment variables
 
  * `HLEDGER_JOURNAL_FILE`
@@ -64,6 +69,11 @@ providing alternative start command to `docker run`.
 You can just drop into a shell in the container and run hledger there (remember to include `-it`):
 ```
 docker run --rm -it -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger bash
+```
+
+Github repo contains helper script that simplifies invocation:
+```
+./run.sh ~/journals/all.journal bash
 ```
 
 Github repo contains helper script that simplifies invocation:
