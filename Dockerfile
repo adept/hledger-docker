@@ -9,14 +9,13 @@ RUN stack install --resolver=$RESOLVER \
     config-ini-0.2.4.0 \
     data-clist-0.1.2.2 \
     word-wrap-0.4.1 \
-    hledger-lib-1.14 \
-    hledger-1.14.1 \
-    hledger-ui-1.14 \
-    hledger-web-1.14 \
+    hledger-lib-1.14.1 \
+    hledger-1.14.2 \
+    hledger-ui-1.14.1 \
+    hledger-web-1.14.1 \
     hledger-api-1.14 \
-    hledger-diff-0.2.0.14 \
     hledger-iadd-1.3.9 \
-    hledger-interest
+    hledger-interest-1.5.3
 
 FROM debian:stable-slim
 
