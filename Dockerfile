@@ -36,5 +36,6 @@ EXPOSE 5000 5001
 COPY start.sh /start.sh
 
 USER hledger
+WORKDIR /data
 
 CMD ["/start.sh"]
