@@ -18,7 +18,8 @@ FROM debian:stable-slim
 
 MAINTAINER Dmitry Astapov <dastapov@gmail.com>
 
-RUN apt-get update && apt-get install libgmp10 && rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get install --yes libgmp10 libtinfo5 && rm -rf /var/lib/apt/lists
+RUN adduser --system --ingroup root hledger
 
 COPY --from=dev /root/.local/bin/hledger* /usr/bin/
 
@@ -30,5 +31,8 @@ VOLUME /data
 EXPOSE 5000 5001
 
 COPY start.sh /start.sh
+
+USER hledger
+WORKDIR /data
 
 CMD ["/start.sh"]

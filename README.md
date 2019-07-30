@@ -16,14 +16,14 @@ associated tools:
 By default, container will start hledger-web on port 5000 and hledger-api on port 5001, both of them reading journal `hledger.journal` from volume `data`, so assuming your journal is in `~/journals/all.journal`, you can run:
 
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 -p 5001:5001 dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 -p 5001:5001 --user $(id --user) dastapov/hledger
 ```
 
 and navigate to `http://localhost:5000` for hledger-web and URLs like `http://localhost:5001/api/v1/accounts` for hledger-api.
 
 If you have LEDGER_FILE environmed variable defined already, you can try:
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 -p 5001:5001 dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 -p 5001:5001 --user $(id --user) dastapov/hledger
 ```
 
 #### Environment variables
@@ -52,13 +52,13 @@ providing alternative start command to `docker run`.
 
 You can just drop into a shell in the container and run hledger there (remember to include `-it`):
 ```
-docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger bash
+docker run --rm -it -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger bash
 ```
 
 Alternatively, you can replace `bash` with a suitable invocation of `hledger`:
 
 ```
-docker run --rm -v "$HOME/hledger-data:/data" dastapov/hledger hledger -f /data/hledger.journal stats
+docker run --rm -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger hledger -f /data/hledger.journal stats
 ```
 
 Make sure you provide `--rm` argument to `docker run`, otherwise your containers will be kept in the container
