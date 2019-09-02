@@ -1,6 +1,6 @@
 FROM haskell:latest as dev
 
-ENV RESOLVER lts-14.4
+ENV RESOLVER lts-14.3
 
 RUN stack setup --resolver=$RESOLVER
 RUN stack install --resolver=$RESOLVER \
