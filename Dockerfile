@@ -22,8 +22,10 @@ FROM debian:stable-slim
 
 MAINTAINER Dmitry Astapov <dastapov@gmail.com>
 
-RUN apt-get update && apt-get install --yes libgmp10 libtinfo5 && rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get install --yes libgmp10 libtinfo5 sudo && rm -rf /var/lib/apt/lists
 RUN adduser --system --ingroup root hledger
+RUN usermod -aG sudo hledger
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 COPY --from=dev /root/.local/bin/hledger* /usr/bin/
 
