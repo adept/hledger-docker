@@ -1,19 +1,13 @@
 FROM haskell:latest as dev
 
-ENV RESOLVER lts-13.8
+ENV RESOLVER lts-14.4
 
 RUN stack setup --resolver=$RESOLVER
 RUN stack install --resolver=$RESOLVER \
-    brick-0.46 \
-    text-zipper-0.10.1 \
-    config-ini-0.2.4.0 \
-    data-clist-0.1.2.2 \
-    word-wrap-0.4.1 \
-    hledger-lib-1.14.1 \
-    hledger-1.14.2 \
-    hledger-ui-1.14.1 \
-    hledger-web-1.14.1 \
-    hledger-api-1.14 \
+    hledger-lib-1.15.1 \
+    hledger-1.15.1 \
+    hledger-ui-1.15 \
+    hledger-web-1.15 \
     hledger-iadd-1.3.9 \
     hledger-interest-1.5.3
 
