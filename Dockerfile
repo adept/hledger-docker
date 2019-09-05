@@ -4,8 +4,8 @@ ENV RESOLVER lts-14.3
 
 RUN stack setup --resolver=$RESOLVER
 RUN stack install --resolver=$RESOLVER \
-    hledger-lib-1.15.1 \
-    hledger-1.15.1 \
+    hledger-lib-1.15.2 \
+    hledger-1.15.2 \
     hledger-ui-1.15 \
     hledger-web-1.15 \
     hledger-iadd-1.3.9 \
