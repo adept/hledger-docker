@@ -1,13 +1,13 @@
 FROM haskell:latest as dev
 
-ENV RESOLVER lts-14.3
+ENV RESOLVER lts-14.16
 
 RUN stack setup --resolver=$RESOLVER
 RUN stack install --resolver=$RESOLVER \
-    hledger-lib-1.15.2 \
-    hledger-1.15.2 \
-    hledger-ui-1.15 \
-    hledger-web-1.15 \
+    hledger-lib-1.16.1 \
+    hledger-1.16.1 \
+    hledger-ui-1.16.1 \
+    hledger-web-1.16.1 \
     hledger-iadd-1.3.9 \
     hledger-interest-1.5.3
 
