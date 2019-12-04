@@ -3,6 +3,7 @@ FROM haskell:latest as dev
 ENV RESOLVER lts-14.16
 
 RUN stack setup --resolver=$RESOLVER
+RUN echo "allow-newer: true" >> /root/.stack/config.yaml
 RUN stack install --resolver=$RESOLVER \
     hledger-lib-1.16.1 \
     hledger-1.16.1 \
