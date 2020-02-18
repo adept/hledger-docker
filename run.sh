@@ -5,9 +5,8 @@ function usage() {
     echo "USAGE: $0 /path/to/hledger.journal [web|bash|hledger [hledger-args]]"
 }
 
-journal=$(readlink -f "$1")
+journal=$(readlink -f "$1") || { usage; exit 1; }
 shift
-[ -f "$journal" ] || { usage; exit 1; }
 dir=$(dirname $journal)
 file=$(basename $journal)
 
