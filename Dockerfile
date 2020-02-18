@@ -1,4 +1,4 @@
-FROM haskell:latest as dev
+FROM haskell:8.6.5 as dev
 
 ENV RESOLVER lts-14.16
 
