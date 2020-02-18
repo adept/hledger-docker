@@ -6,25 +6,24 @@ associated tools:
  * hledger-web, the web interface for hledger
  * hledger-ui, the curses interface for hledger
  * hledger-iadd, the interactive console frontend for "hledger add"
- * hledger-api, which serves hledger data and reports as a JSON web API
  * hledger-diff, the tool to diff journal files
  * [hledger-interest](https://github.com/peti/hledger-interest), tool to compute interest for loan/mortgage accounts
 
 ## Usage
 
-### Hledger-web + hledger-api
+### Hledger-web
 
-By default, container will start hledger-web on port 5000 and hledger-api on port 5001, both of them reading journal `hledger.journal` from volume `data`, so assuming your journal is in `~/journals/all.journal`, you can run:
+By default, container will start hledger-web on port 5000, reading journal `hledger.journal` from volume `data`, so assuming your journal is in `~/journals/all.journal`, you can run:
 
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 -p 5001:5001 --user $(id --user) dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 --user $(id --user) dastapov/hledger
 ```
 
-and navigate to `http://localhost:5000` for hledger-web and URLs like `http://localhost:5001/api/v1/accounts` for hledger-api.
+and navigate to `http://localhost:5000` for hledger-web
 
 If you have LEDGER_FILE environmed variable defined already, you can try:
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 -p 5001:5001 --user $(id --user) dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 --user $(id --user) dastapov/hledger
 ```
 
 Github repo contains helper script that simplifies invocation:
@@ -40,8 +39,6 @@ Github repo contains helper script that simplifies invocation:
    * set the TCP host (default: 0.0.0.0)
  * `HLEDGER_PORT`
    * set the TCP port (default: 5000)
- * `HLEDGER_API_PORT`
-   * set the TCP port (default: 5001)
  * `HLEDGER_DEBUG`
    * debug output (default: 1, increase for more)
  * `HLEDGER_BASE_URL`
