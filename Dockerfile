@@ -1,15 +1,15 @@
 FROM haskell:8.6.5 as dev
 
-ENV RESOLVER lts-14.20
+ENV RESOLVER lts-14.27
 
 RUN stack setup --resolver=$RESOLVER
 RUN echo "allow-newer: true" >> /root/.stack/config.yaml
 RUN stack install --resolver=$RESOLVER \
-    hledger-lib-1.16.2 \
-    hledger-1.16.2 \
-    hledger-ui-1.16.2 \
-    hledger-web-1.16.2 \
-    hledger-iadd-1.3.9 \
+    hledger-lib-1.17 \
+    hledger-1.17 \
+    hledger-ui-1.17 \
+    hledger-web-1.17 \
+    hledger-iadd-1.3.10 \
     hledger-interest-1.5.3
 
 FROM debian:stable-slim
