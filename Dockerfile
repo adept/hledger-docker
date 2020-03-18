@@ -10,7 +10,7 @@ RUN stack install --resolver=$RESOLVER \
     hledger-ui-1.17 \
     hledger-web-1.17 \
     hledger-iadd-1.3.10 \
-    hledger-interest-1.5.3
+    hledger-interest-1.5.4
 
 FROM debian:stable-slim
 
