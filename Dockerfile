@@ -5,7 +5,7 @@ ENV RESOLVER lts-14.27
 RUN stack setup --resolver=$RESOLVER
 RUN echo "allow-newer: true" >> /root/.stack/config.yaml
 RUN stack install --resolver=$RESOLVER \
-    hledger-lib-1.17 \
+    hledger-lib-1.17.0.1 \
     hledger-1.17 \
     hledger-ui-1.17 \
     hledger-web-1.17 \
