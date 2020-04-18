@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+    hledger-dockerized:
+        image: dastapov/hledger
+        environment:
+            -   HLEDGER_JOURNAL_FILE=/data/all.journal
+                # if behind reverse proxy, set base url
+            -   # HLEDGER_BASE_URL=https://hledger.example.com
+        ports:
+            -   5000:5000
+        restart: always
+        user: "0" # evaluate echo "$(id -u)" and copy here
+        volumes:
+            -   ${HOME}/journals:/data
