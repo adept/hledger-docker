@@ -7,8 +7,8 @@ function usage() {
 
 journal=$(readlink -f "$1") || { usage; exit 1; }
 shift
-dir=$(dirname $journal)
-file=$(basename $journal)
+dir=$(dirname "$journal")
+file=$(basename "$journal")
 
 cmd="$1"
 shift
