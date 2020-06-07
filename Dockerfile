@@ -4,12 +4,12 @@ ENV RESOLVER lts-15.4
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
-    hledger-lib-1.17.1 \
-    hledger-1.17.1.1 \
-    hledger-ui-1.17.1.1 \
-    hledger-web-1.17.1 \
-    hledger-iadd-1.3.10 \
-    hledger-interest-1.5.4
+    hledger-lib-1.18 \
+    hledger-1.18 \
+    hledger-ui-1.18 \
+    hledger-web-1.18 \
+    hledger-iadd-1.3.11 \
+    hledger-interest-1.5.5
 
 FROM debian:stable-slim
 
