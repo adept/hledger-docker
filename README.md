@@ -1,4 +1,4 @@
-# Docker image for hledger 1.18 and associated tools
+# Docker image for hledger 1.18.1 and associated tools
 
 This docker image provides [hledger](http://hledger.org/), the plain text accounting software, and
 associated tools:
