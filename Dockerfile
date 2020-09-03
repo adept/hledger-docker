@@ -1,15 +1,15 @@
-FROM haskell:8.8.3 as dev
+FROM haskell:8.8.4 as dev
 
-ENV RESOLVER lts-15.4
+ENV RESOLVER lts-16.12
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
-    hledger-lib-1.18.1 \
-    hledger-1.18.1 \
-    hledger-ui-1.18.1 \
-    hledger-web-1.18.1 \
-    hledger-iadd-1.3.11 \
-    hledger-interest-1.5.5
+    hledger-lib-1.19 \
+    hledger-1.19 \
+    hledger-ui-1.19 \
+    hledger-web-1.19 \
+    hledger-iadd-1.3.12 \
+    hledger-interest-1.6.0
 
 FROM debian:stable-slim
 
