@@ -4,10 +4,10 @@ ENV RESOLVER lts-16.12
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
-    hledger-lib-1.19 \
-    hledger-1.19 \
-    hledger-ui-1.19 \
-    hledger-web-1.19 \
+    hledger-lib-1.19.1 \
+    hledger-1.19.1 \
+    hledger-ui-1.19.1 \
+    hledger-web-1.19.1 \
     hledger-iadd-1.3.12 \
     hledger-interest-1.6.0
 
