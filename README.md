@@ -1,4 +1,4 @@
-# Docker image for hledger 1.20 and associated tools
+# Docker image for hledger and associated tools
 
 This docker image provides [hledger](http://hledger.org/), the plain text accounting software, and
 associated tools:
@@ -8,6 +8,11 @@ associated tools:
  * hledger-iadd, the interactive console frontend for "hledger add"
  * hledger-diff, the tool to diff journal files
  * [hledger-interest](https://github.com/peti/hledger-interest), tool to compute interest for loan/mortgage accounts
+
+## Image versions/tags
+
+ * Most recent: `latest`, `1.20`, `1.20-dev`, `latest-dev`
+ * Legacy: `1.19.1`,`1.19.1-dev`,`1.19`,`1.19-dev`,`1.18.1`,`1.18.1-dev`,`1.18`,`1.18-dev`,`1.17.1.1`,`1.17`,`1.16.2`,`1.16.1`,`1.15.2`,`1.15.1`,`1.14`,`1.14.1`,`1.14.2`
 
 ## Usage
 
