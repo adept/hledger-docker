@@ -10,3 +10,5 @@ docker image push dastapov/hledger:${v}-dev
 docker image push dastapov/hledger:latest-dev
 docker image push dastapov/hledger:${v}
 docker image push dastapov/hledger:latest
+./update_readme.sh
+docker pushrm dastapov/hledger
