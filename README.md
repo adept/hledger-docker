@@ -11,7 +11,7 @@ associated tools:
 
 ## Image versions/tags
 
- * Most recent: `latest`, `1.20`, `1.20-dev`, `latest-dev`
+ * Most recent: `latest`,`1.20`,`latest-dev`,`1.20-dev`
  * Legacy: `1.19.1`,`1.19.1-dev`,`1.19`,`1.19-dev`,`1.18.1`,`1.18.1-dev`,`1.18`,`1.18-dev`,`1.17.1.1`,`1.17`,`1.16.2`,`1.16.1`,`1.15.2`,`1.15.1`,`1.14`,`1.14.1`,`1.14.2`
 
 ## Usage
