@@ -31,6 +31,8 @@ If you have LEDGER_FILE environmed variable defined already, you can try:
 docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 --user $(id --user) dastapov/hledger
 ```
 
+Any extra arguments you provide will be passed to `hledger-web`.
+
 Github repo contains helper script that simplifies invocation:
 ```
 ./run.sh ~/journals/all.journal web
