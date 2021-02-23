@@ -8,7 +8,7 @@ echo "input file:   ${HLEDGER_JOURNAL_FILE:=/data/hledger.journal}"
 echo "debug level:  ${HLEDGER_DEBUG:=1}"
 echo "rules file:   ${HLEDGER_RULES_FILE:=/data/hledger.rules}"
 echo "capabilities: ${HLEDGER_CAPABILITIES:=view,add}"
-echo "extra_args:   ${@}"
+echo "extra_args:   ${HLEDGER_ARGS:=$@}"
 echo "---------------------------------------------------------------"
 
 exec hledger-web \
@@ -21,4 +21,4 @@ exec hledger-web \
      --file-url=$HLEDGER_FILE_URL \
      --rules-file="$HLEDGER_RULES_FILE" \
      --capabilities=$HLEDGER_CAPABILITIES \
-     "$@"
+     ${HLEDGER_ARGS:="$@"}

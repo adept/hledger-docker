@@ -54,6 +54,8 @@ Github repo contains helper script that simplifies invocation:
    * set the static files url (default: $HLEDGER_BASE_URL/static)
  * `HLEDGER_RULES_FILE`
    * CSV conversion rules file (default: /data/hledger.rules)
+ * `HLEDGER_ARGS`
+   * extra arguments you want to pass to hledger-web. You can supply extra arguments on the command line as well, but environment variable is useful for docker-compose recipes.
 
 ### hledger cli in the shell
 
