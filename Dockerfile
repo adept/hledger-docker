@@ -1,17 +1,19 @@
 FROM haskell:8.8.4 as dev
 
-ENV RESOLVER lts-16.12
+ENV RESOLVER lts-16.31
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
-    hledger-lib-1.20.4 \
-    hledger-1.20.4 \
-    hledger-ui-1.20.4 \
-    hledger-web-1.20.4 \
-    hledger-iadd-1.3.12 \
-    hledger-interest-1.6.0 \
+    hledger-lib-1.21 \
+    hledger-1.21 \
+    hledger-ui-1.21 \
+    hledger-web-1.21 \
+    hledger-iadd-1.3.13 \
     pretty-simple-4.0.0.0 \
     prettyprinter-1.7.0
+
+#  Hledger Interest currently unbuildable, disabled
+#  hledger-interest-1.6.0 \
 
 FROM debian:stable-slim
 
