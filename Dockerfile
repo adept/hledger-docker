@@ -9,11 +9,9 @@ RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
     hledger-ui-1.21 \
     hledger-web-1.21 \
     hledger-iadd-1.3.13 \
+    hledger-interest-1.6.1 \
     pretty-simple-4.0.0.0 \
     prettyprinter-1.7.0
-
-#  Hledger Interest currently unbuildable, disabled
-#  hledger-interest-1.6.0 \
 
 FROM debian:stable-slim
 
