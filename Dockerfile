@@ -4,14 +4,14 @@ ENV RESOLVER lts-16.31
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
-    hledger-lib-1.21 \
-    hledger-1.21 \
-    hledger-ui-1.21 \
-    hledger-web-1.21 \
-    hledger-iadd-1.3.13 \
-    hledger-interest-1.6.1 \
+    hledger-lib-1.22 \
+    hledger-1.22 \
+    hledger-ui-1.22 \
+    hledger-web-1.22 \
     pretty-simple-4.0.0.0 \
     prettyprinter-1.7.0
+#    hledger-interest-1.6.1 \
+#    hledger-iadd-1.3.14 \
 
 FROM debian:stable-slim
 
