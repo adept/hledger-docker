@@ -8,8 +8,8 @@ RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
     hledger-1.22.2 \
     hledger-ui-1.22.2 \
     hledger-web-1.22.2 \
-    hledger-iadd-1.3.15
-#    hledger-interest-1.6.1 \
+    hledger-iadd-1.3.15 \
+    hledger-interest-1.6.2
 
 FROM debian:stable-slim
 
