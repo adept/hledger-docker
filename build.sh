@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-v=1.23
+v=1.24
 docker image build -t dastapov/hledger:latest-dev -t dastapov/hledger:${v}-dev --target dev .
 docker image build -t dastapov/hledger:latest -t dastapov/hledger:${v} .
 
