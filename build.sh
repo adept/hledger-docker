@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-v=1.24
+v=1.24.1
 docker image build -t dastapov/hledger:latest-dev -t dastapov/hledger:${v}-dev --target dev .
 docker image build -t dastapov/hledger:latest -t dastapov/hledger:${v} .
 
@@ -10,6 +10,5 @@ docker image push dastapov/hledger:${v}-dev
 docker image push dastapov/hledger:latest-dev
 docker image push dastapov/hledger:${v}
 docker image push dastapov/hledger:latest
-sleep 60
-./update_readme.sh
-docker pushrm dastapov/hledger
+echo ./update_readme.sh
+echo docker pushrm dastapov/hledger
