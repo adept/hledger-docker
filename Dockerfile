@@ -1,13 +1,13 @@
-FROM haskell:8.10.4 as dev
+FROM haskell:9.2.4 as dev
 
-ENV RESOLVER lts-18.5
+ENV RESOLVER nightly-2022-09-07
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
-    hledger-lib-1.26 \
-    hledger-1.26 \
-    hledger-ui-1.26 \
-    hledger-web-1.26 \
+    hledger-lib-1.27 \
+    hledger-1.27 \
+    hledger-ui-1.27 \
+    hledger-web-1.27 \
     hledger-interest-1.6.4 \
     hledger-stockquotes-0.1.2.1 
 
