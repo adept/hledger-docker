@@ -1,17 +1,17 @@
 FROM haskell:9.2.4 as dev
 
-ENV RESOLVER nightly-2022-09-07
+ENV RESOLVER nightly-2022-09-20
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER && stack install --resolver=$RESOLVER \
-    hledger-lib-1.27 \
-    hledger-1.27 \
-    hledger-ui-1.27 \
-    hledger-web-1.27 \
+    hledger-lib-1.271 \
+    hledger-1.27.1 \
+    hledger-ui-1.27.1 \
+    hledger-web-1.27.1 \
     hledger-interest-1.6.4 \
-    hledger-stockquotes-0.1.2.1 
+    hledger-stockquotes-0.1.2.1
 
-#    hledger-iadd-1.3.17 \
+# RUN stack install --resolver=nightly-2022-09-05 hledger-iadd-1.3.17
 
 FROM debian:stable-slim
 
