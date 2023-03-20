@@ -1,12 +1,12 @@
 FROM haskell:9.2.5 as dev
 
-ENV RESOLVER lts-20.1
+ENV RESOLVER lts-20.8
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER 
-RUN stack install --resolver=$RESOLVER brick-1.5 fsnotify-0.4.0.0 hledger-lib-1.28 hledger-1.28 hledger-ui-1.28 hledger-web-1.28
+RUN stack install --resolver=$RESOLVER brick-1.6 fsnotify-0.4.1.0 hledger-lib-1.29.1 hledger-1.29.1 hledger-ui-1.29.1 hledger-web-1.29.1
 RUN stack install --resolver=$RESOLVER hledger-stockquotes-0.1.2.1
-RUN stack install --resolver=$RESOLVER hledger-interest-1.6.4
+RUN stack install --resolver=$RESOLVER hledger-interest-1.6.5
 RUN stack install --resolver=$RESOLVER brick-0.71.1 hledger-iadd-1.3.17
 
 FROM debian:stable-slim
