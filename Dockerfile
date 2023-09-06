@@ -4,7 +4,7 @@ ENV RESOLVER lts-20.8
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER 
-RUN stack install --resolver=$RESOLVER brick-1.6 fsnotify-0.4.1.0 hledger-lib-1.30 hledger-1.30.1 hledger-ui-1.30 hledger-web-1.30
+RUN stack install --resolver=$RESOLVER brick-1.6 fsnotify-0.4.1.0 hledger-lib-1.31 hledger-1.31 hledger-ui-1.31 hledger-web-1.31
 RUN stack install --resolver=$RESOLVER hledger-stockquotes-0.1.2.1
 RUN stack install --resolver=$RESOLVER hledger-interest-1.6.5
 RUN stack install --resolver=$RESOLVER brick-1.6 hledger-lib-1.29.2 hledger-iadd-1.3.18
