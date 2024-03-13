@@ -50,8 +50,6 @@ Github repo contains helper script that simplifies invocation:
    * debug output (default: 1, increase for more)
  * `HLEDGER_BASE_URL`
    * set the base url (default: http://localhost:$HLEDGER_PORT)
- * `HLEDGER_FILE_URL`
-   * set the static files url (default: $HLEDGER_BASE_URL/static)
  * `HLEDGER_RULES_FILE`
    * CSV conversion rules file (default: /data/hledger.rules)
  * `HLEDGER_ARGS`
