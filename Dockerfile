@@ -5,9 +5,9 @@ ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER 
 RUN stack install --resolver=$RESOLVER brick-2.2 vty-6.1 vty-crossplatform-0.4.0.0 fsnotify-0.4.1.0 text-zipper-0.13 vty-unix-0.2.0.0 hledger-lib-1.32.3 hledger-1.32.3 hledger-ui-1.32.3 hledger-web-1.32.3
-RUN stack install --resolver=$RESOLVER hledger-stockquotes-0.1.2.1
+RUN stack install --resolver=$RESOLVER hledger-stockquotes-0.1.2.2
 RUN stack install --resolver=$RESOLVER hledger-interest-1.6.6
-RUN stack install --resolver=$RESOLVER brick-2.2 vty-6.1 vty-crossplatform-0.4.0.0 text-zipper-0.13 vty-unix-0.2.0.0 hledger-lib-1.32.3 hledger-iadd-1.3.19
+RUN stack install --resolver=$RESOLVER brick-2.2 vty-6.1 vty-crossplatform-0.4.0.0 text-zipper-0.13 vty-unix-0.2.0.0 hledger-lib-1.32.3 hledger-iadd-1.3.20
 # RUN apt-get update && apt-get install -y python3-pip && pip3 install --prefix=/install git+https://gitlab.com/nobodyinperson/hledger-utils git+https://github.com/edkedk99/hledger-lots && rm -rf /var/lib/apt/lists
 
 FROM debian:stable-slim
