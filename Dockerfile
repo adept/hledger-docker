@@ -4,7 +4,7 @@ ENV RESOLVER lts-22.17
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER 
-RUN stack install --resolver=$RESOLVER process-1.6.19.0 Cabal-3.10.1.0 haskeline-0.8.2.1 vty-0.2.0.1 hledger-lib-1.33 hledger-1.33 hledger-ui-1.33 hledger-web-1.33
+RUN stack install --resolver=$RESOLVER process-1.6.19.0 Cabal-3.10.1.0 haskeline-0.8.2.1 vty-0.2.0.1 hledger-lib-1.33.1 hledger-1.33.1 hledger-ui-1.33.1 hledger-web-1.33.1
 RUN stack install --resolver=$RESOLVER hledger-stockquotes-0.1.2.2
 RUN stack install --resolver=$RESOLVER hledger-interest-1.6.6
 RUN stack install --resolver=$RESOLVER process-1.6.19.0 Cabal-3.10.1.0 haskeline-0.8.2.1 vty-0.2.0.1 hledger-lib-1.32.3.3.3 hledger-iadd-1.3.20
