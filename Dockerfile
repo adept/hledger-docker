@@ -9,13 +9,13 @@ RUN stack install --resolver=$RESOLVER base-compat-0.14.0
 RUN stack install --resolver=$RESOLVER microlens-platform-0.4.3.5 hashable-1.4.7.0 hledger-lib-1.41 hledger-1.41 hledger-ui-1.41 hledger-web-1.41
 
 # Needs fixes for 1.41
-# RUN stack install --resolver=$RESOLVER hledger-stockquotes-0.1.3.1
+RUN stack install hledger-stockquotes-0.1.3.2
 
 # Needs fixes for multi-interval bug
 # RUN stack install --resolver=$RESOLVER hledger-interest-1.6.7
 
 # Needs fixes for 1.41
-# RUN stack install --resolver=$RESOLVER brick-2.5 hledger-lib-1.40 megaparsec-9.6.1 hledger-iadd-1.3.21
+RUN stack install hledger-iadd-1.3.21
 
 WORKDIR /usr/app
 
@@ -32,11 +32,11 @@ RUN git clone https://github.com/adept/hledger-interest && cd hledger-interest &
 # Simplify this once 1.41 is released
 RUN git clone https://github.com/simonmichael/hledger && mv hledger/bin ./hledger-scripts && rm -rf hledger && cd hledger-scripts && for f in hledger-*.hs; do stack --resolver=$RESOLVER --system-ghc ghc --package hledger-lib --package hledger --  "$f"|| true; done 
 
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 MAINTAINER Dmitry Astapov <dastapov@gmail.com>
 
-RUN apt-get update && apt-get install --yes libgmp10 libtinfo6 sudo && rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get install --yes libgmp10 libtinfo6 sudo less && rm -rf /var/lib/apt/lists
 RUN adduser --system --ingroup root hledger && usermod -aG sudo hledger && mkdir /.cache && chmod 0777 /.cache
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
