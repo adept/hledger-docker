@@ -7,7 +7,7 @@ ENV RESOLVER=nightly-2025-03-01 \
 RUN ghc --version
 RUN stack setup --resolver=$RESOLVER 
 RUN stack install --resolver=$RESOLVER base-compat-0.14.0
-RUN stack install --resolver=$RESOLVER microlens-platform-0.4.3.5 hashable-1.4.7.0 hledger-lib-1.42 hledger-1.42 hledger-ui-1.42 hledger-web-1.42
+RUN stack install --resolver=$RESOLVER microlens-platform-0.4.3.5 hashable-1.4.7.0 hledger-lib-1.42.1 hledger-1.42.1 hledger-ui-1.42.1 hledger-web-1.42.1
 
 # Needs fixes for 1.42
 RUN stack install hledger-stockquotes-0.1.3.2
