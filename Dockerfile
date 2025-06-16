@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git python3-pip
 #RUN stack install --resolver=$RESOLVER base-compat-0.14.0
 #RUN stack install --resolver=$RESOLVER microlens-platform-0.4.3.5 hashable-1.4.7.0 hledger-lib-1.43 hledger-1.43 hledger-ui-1.43 hledger-web-1.43
 WORKDIR /build
-RUN git clone --depth 1 --branch 1.43 https://github.com/simonmichael/hledger && cd hledger && ls && stack install --verbose hledger hledger-ui hledger-web
+RUN git clone --depth 1 --branch 1.43.2 https://github.com/simonmichael/hledger && cd hledger && ls && stack install --verbose hledger hledger-ui hledger-web
 RUN cd /build/hledger/bin && ./compile.sh && cp hledger* /root/.local/bin/
 
 # Needs fixes for 1.42
