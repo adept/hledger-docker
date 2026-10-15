@@ -7,16 +7,19 @@ echo "input file:   ${HLEDGER_JOURNAL_FILE:=/data/hledger.journal}"
 echo "debug level:  ${HLEDGER_DEBUG:=1}"
 echo "rules file:   ${HLEDGER_RULES_FILE:=/data/hledger.rules}"
 echo "allow:        ${HLEDGER_ALLOW:=add}"
-echo "extra_args:   ${HLEDGER_ARGS:=$@}"
+echo "extra_args:   ${HLEDGER_ARGS} $*"
 echo "---------------------------------------------------------------"
 
+# HLEDGER_ARGS is unquoted on purpose: it is split on whitespace, so that
+# one environment variable can carry several options (but not glob-expanded)
+set -f
 exec hledger-web \
      --server \
-     --host=$HLEDGER_HOST \
-     --port=$HLEDGER_PORT \
+     --host="$HLEDGER_HOST" \
+     --port="$HLEDGER_PORT" \
      --file="$HLEDGER_JOURNAL_FILE" \
-     --debug=$HLEDGER_DEBUG \
-     --base-url=$HLEDGER_BASE_URL \
+     --debug="$HLEDGER_DEBUG" \
+     --base-url="$HLEDGER_BASE_URL" \
      --rules-file="$HLEDGER_RULES_FILE" \
      --allow="$HLEDGER_ALLOW" \
-     ${HLEDGER_ARGS:="$@"}
+     $HLEDGER_ARGS "$@"
