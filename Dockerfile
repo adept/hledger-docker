@@ -11,11 +11,8 @@ ARG HLEDGER_VERSION
 
 ENV LC_ALL=C.UTF-8
 
-RUN ghc --version
-#RUN stack install --resolver=$RESOLVER base-compat-0.14.0
-#RUN stack install --resolver=$RESOLVER microlens-platform-0.4.3.5 hashable-1.4.7.0 hledger-lib-1.43 hledger-1.43 hledger-ui-1.43 hledger-web-1.43
 WORKDIR /build
-RUN git clone --depth 1 --branch ${HLEDGER_VERSION} https://github.com/simonmichael/hledger && cd hledger && ls && stack install --verbose hledger hledger-ui hledger-web
+RUN git clone --depth 1 --branch ${HLEDGER_VERSION} https://github.com/simonmichael/hledger && cd hledger && stack install hledger hledger-ui hledger-web
 RUN cd /build/hledger/bin && ./compile.sh
 
 # The add-ons listed in README.md. compile.sh doesn't strip them;
@@ -49,7 +46,7 @@ RUN --mount=type=cache,target=/root/.stack/pantry,sharing=locked \
 # Simplify this once hledger-interest merges in multi-interval fix
 WORKDIR /build
 RUN --mount=type=cache,target=/root/.stack/pantry,sharing=locked \
-    git clone https://github.com/adept/hledger-interest && cd hledger-interest && stack install --resolver=$RESOLVER hledger-interest && cd .. && rm -rf hledger-interest
+    git clone --depth 1 https://github.com/adept/hledger-interest && cd hledger-interest && stack install --resolver=$RESOLVER hledger-interest && cd .. && rm -rf hledger-interest
 
 # Python tools, in a venv built against the same python3 as the runtime image
 FROM debian:bookworm-slim AS pyvenv
@@ -68,7 +65,7 @@ RUN /usr/app/venv/bin/pip uninstall -y setuptools pip && \
 
 FROM debian:bookworm-slim
 
-MAINTAINER Dmitry Astapov <dastapov@gmail.com>
+LABEL org.opencontainers.image.authors="Dmitry Astapov <dastapov@gmail.com>"
 
 RUN apt-get update && apt-get install --yes --no-install-recommends libgmp10 libtinfo6 sudo less python3 && apt-get clean && rm -rf /var/lib/apt/lists
 RUN adduser --system --ingroup root hledger && usermod -aG sudo hledger && mkdir /.cache && chmod 0777 /.cache
