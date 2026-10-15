@@ -16,9 +16,16 @@ RUN ghc --version
 #RUN stack install --resolver=$RESOLVER microlens-platform-0.4.3.5 hashable-1.4.7.0 hledger-lib-1.43 hledger-1.43 hledger-ui-1.43 hledger-web-1.43
 WORKDIR /build
 RUN git clone --depth 1 --branch ${HLEDGER_VERSION} https://github.com/simonmichael/hledger && cd hledger && ls && stack install --verbose hledger hledger-ui hledger-web
-RUN cd /build/hledger/bin && ./compile.sh && cp hledger* /root/.local/bin/
+RUN cd /build/hledger/bin && ./compile.sh
 
-RUN cd /root/.local/bin/ && rm *.o *.hi *.hs && ls /root/.local/bin/
+# The add-ons listed in README.md. compile.sh doesn't strip them;
+# hledger-bar is a shell script.
+RUN cd /build/hledger/bin && \
+    for s in balance-as-budget balance-as-budget-multi check-fancyassertions check-postable check-tagfiles \
+             combine-balances move register-max register-max2 smooth swap-dates; do \
+        strip -o /root/.local/bin/hledger-$s hledger-$s; \
+    done && \
+    cp hledger-bar /root/.local/bin/
 
 # Add-ons from Hackage and git. Only /root/.stack/pantry (Hackage index and
 # package sources) is cached: mounting all of /root/.stack would hide the
@@ -53,6 +60,11 @@ RUN python3 -m venv /usr/app/venv && /usr/app/venv/bin/pip install --no-cache-di
     git+https://gitlab.com/chrisberkhout/pricehist \
     git+https://gitlab.com/nobodyinperson/hledger-utils \
     git+https://github.com/edkedk99/hledger-lots
+
+# Not needed at runtime. Keep __pycache__: the venv isn't writable by the
+# hledger user, so without it every run would recompile pandas, matplotlib etc.
+RUN /usr/app/venv/bin/pip uninstall -y setuptools pip && \
+    find /usr/app/venv -type d -name tests -prune -exec rm -rf {} +
 
 FROM debian:bookworm-slim
 
