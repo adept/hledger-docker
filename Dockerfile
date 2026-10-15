@@ -39,7 +39,7 @@ FROM debian:bookworm-slim
 
 MAINTAINER Dmitry Astapov <dastapov@gmail.com>
 
-RUN apt-get update && apt-get install --yes --no-install-recommends libgmp10 libtinfo6 sudo less && apt-get clean && rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get install --yes --no-install-recommends libgmp10 libtinfo6 sudo less python3 && apt-get clean && rm -rf /var/lib/apt/lists
 RUN adduser --system --ingroup root hledger && usermod -aG sudo hledger && mkdir /.cache && chmod 0777 /.cache
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
@@ -47,7 +47,8 @@ COPY --from=dev /root/.local/bin/hledger* /usr/bin/
 COPY --from=dev /usr/app/venv /usr/app/venv
 
 ENV PATH="/usr/app/venv/bin:$PATH" \
-    LC_ALL=C.UTF-8
+    LC_ALL=C.UTF-8 \
+    MPLCONFIGDIR=/tmp/matplotlib
 
 COPY data /data
 VOLUME /data

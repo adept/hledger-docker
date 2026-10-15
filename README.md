@@ -15,6 +15,8 @@ associated tools:
 And various add-ons from the hledger repository `bin` dir:
 
  * hledger-balance-as-budget
+ * hledger-balance-as-budget-multi
+ * hledger-bar
  * hledger-check-fancyassertions
  * hledger-check-postable
  * hledger-check-tagfiles
