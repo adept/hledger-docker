@@ -49,7 +49,12 @@ If you have LEDGER_FILE environmed variable defined already, you can try:
 docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 --user $(id --user) dastapov/hledger
 ```
 
-Any extra arguments you provide will be passed to `hledger-web`.
+Any extra arguments you provide will be passed to `hledger-web`, as long as the first one starts with `-`
+(otherwise it's treated as a command to run, see below). For example, to also show forecasted transactions
+and apply auto postings:
+```
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 --user $(id --user) dastapov/hledger --forecast --auto
+```
 
 Github repo contains helper script that simplifies invocation:
 ```

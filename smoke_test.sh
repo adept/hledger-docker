@@ -35,3 +35,15 @@ done
 hledger print >/dev/null || { echo "FAIL  hledger print"; failed=1; }
 exit $failed
 EOF
+
+# The entrypoint runs commands as given and passes options to hledger-web
+if docker container run --rm "$image" hledger --version | grep -q '^hledger '; then
+    echo "ok    entrypoint: command"
+else
+    echo "FAIL  entrypoint: command"; exit 1
+fi
+if timeout 30 docker container run --rm "$image" --version | grep -q '^hledger-web '; then
+    echo "ok    entrypoint: hledger-web options"
+else
+    echo "FAIL  entrypoint: hledger-web options"; exit 1
+fi

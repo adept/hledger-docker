@@ -84,9 +84,9 @@ VOLUME /data
 
 EXPOSE 5000 5001
 
-COPY start.sh /start.sh
+COPY start.sh entrypoint.sh /
 
 USER hledger
 WORKDIR /data
 
-CMD ["/start.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
