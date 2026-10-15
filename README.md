@@ -22,7 +22,6 @@ And various add-ons from the hledger repository `bin` dir:
  * hledger-check-tagfiles
  * hledger-combine-balances
  * hledger-move
- * hledger-print-location
  * hledger-register-max2
  * hledger-register-max
  * hledger-smooth
@@ -103,7 +102,10 @@ registry even after you are done with them, which is probably not what you want.
 ### Using image for hledger development
 
 You can use the supplied Dockerfile to get yourself an image for hledger development. Build target `dev`
-will get you Debian-based image with `stack` and all the build dependencies of `hledger` installed:
+will get you Debian-based image with `stack` and all the build dependencies of `hledger` installed.
+It contains the hledger source tree in `/build/hledger` and hledger, hledger-ui, hledger-web and the add-ons
+from the `bin` dir built from it in `/root/.local/bin`. The other tools (hledger-iadd, hledger-interest,
+hledger-stockquotes and the Python tools) are only in the main image.
 
 ```
 docker image build --tag hledger-dev --target dev .
