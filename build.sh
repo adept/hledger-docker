@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-v=1.52.4
+v=$(sed -n 's/^ARG HLEDGER_VERSION=//p' Dockerfile)
+[ -n "$v" ] || { echo "can't find ARG HLEDGER_VERSION in Dockerfile"; exit 1; }
 docker image build -t dastapov/hledger:latest-dev -t dastapov/hledger:${v}-dev --target dev . "$@"
 docker image build -t dastapov/hledger:latest -t dastapov/hledger:${v} . "$@"
 
