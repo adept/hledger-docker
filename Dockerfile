@@ -54,9 +54,9 @@ FROM debian:bookworm-slim AS pyvenv
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates git python3 python3-venv && apt-get clean && rm -rf /var/lib/apt/lists
 
 RUN python3 -m venv /usr/app/venv && /usr/app/venv/bin/pip install --no-cache-dir \
-    git+https://gitlab.com/chrisberkhout/pricehist \
-    git+https://gitlab.com/nobodyinperson/hledger-utils \
-    git+https://github.com/edkedk99/hledger-lots
+    pricehist==1.4.16 \
+    git+https://gitlab.com/nobodyinperson/hledger-utils@d950b889cec3d1b73eb9cdaa30501561779f4866 \
+    git+https://github.com/edkedk99/hledger-lots@a1fdd32bf996bca9cadeca7a94391bfc75aa755a
 
 # Not needed at runtime. Keep __pycache__: the venv isn't writable by the
 # hledger user, so without it every run would recompile pandas, matplotlib etc.
