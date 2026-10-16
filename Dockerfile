@@ -65,7 +65,8 @@ RUN /usr/app/venv/bin/pip uninstall -y setuptools pip && \
 
 FROM debian:bookworm-slim
 
-LABEL org.opencontainers.image.authors="Dmitry Astapov <dastapov@gmail.com>"
+LABEL org.opencontainers.image.authors="Dmitry Astapov <dastapov@gmail.com>" \
+      org.opencontainers.image.source="https://github.com/adept/hledger-docker"
 
 RUN apt-get update && apt-get install --yes --no-install-recommends libgmp10 libtinfo6 less nano vim-tiny python3 && apt-get clean && rm -rf /var/lib/apt/lists
 # One writable home for the hledger user and for any uid given with --user
@@ -86,6 +87,11 @@ VOLUME /data
 EXPOSE 5000
 
 COPY start.sh entrypoint.sh /
+
+# After all RUNs: a declared ARG is part of their cache keys, so version bumps
+# would rebuild them
+ARG HLEDGER_VERSION
+LABEL org.opencontainers.image.version="${HLEDGER_VERSION}"
 
 USER hledger
 WORKDIR /data
