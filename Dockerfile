@@ -37,15 +37,14 @@ ENV LC_ALL=C.UTF-8
 RUN --mount=type=cache,target=/root/.stack/pantry,sharing=locked \
     stack install --resolver=$RESOLVER hledger-stockquotes-0.1.3.2
 
-# Needs fixes for multi-interval bug
-# RUN stack install --resolver=$RESOLVER hledger-interest-1.6.7
-
 # Needs fixes for 1.41
 RUN --mount=type=cache,target=/root/.stack/pantry,sharing=locked \
     stack install --resolver=$RESOLVER hledger-iadd-1.3.22
 
 # Simplify this once hledger-interest merges in multi-interval fix
 WORKDIR /build
+# Needs fixes for multi-interval bug
+# RUN stack install --resolver=$RESOLVER hledger-interest-1.6.7
 RUN --mount=type=cache,target=/root/.stack/pantry,sharing=locked \
     git clone --depth 1 https://github.com/adept/hledger-interest && cd hledger-interest && stack install --resolver=$RESOLVER hledger-interest && cd .. && rm -rf hledger-interest
 
