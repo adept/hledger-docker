@@ -88,6 +88,11 @@ You can just drop into a shell in the container and run hledger there (remember 
 docker run --rm -it -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger bash
 ```
 
+`nano` and `vi` are available in the image (e.g. for `hledger edit`; set `EDITOR` to choose one).
+
+If you need root inside the container (for example, to `apt-get update && apt-get install` something), use
+`--user 0` with `docker run`, or `docker exec -u 0 -it CONTAINER bash` for a container that is already running.
+
 Github repo contains helper script that simplifies invocation:
 ```
 ./run.sh ~/journals/all.journal bash

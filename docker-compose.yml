@@ -8,6 +8,7 @@ services:
         ports:
             -   5000:5000
         restart: always
-        user: "0" # evaluate echo "$(id -u)" and copy here
+        # Replace with your own uid (run `id -u`), so that files written to /data are owned by you
+        user: "1000"
         volumes:
             -   ${HOME}/journals:/data

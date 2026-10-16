@@ -67,9 +67,8 @@ FROM debian:bookworm-slim
 
 LABEL org.opencontainers.image.authors="Dmitry Astapov <dastapov@gmail.com>"
 
-RUN apt-get update && apt-get install --yes --no-install-recommends libgmp10 libtinfo6 sudo less python3 && apt-get clean && rm -rf /var/lib/apt/lists
-RUN adduser --system --ingroup root hledger && usermod -aG sudo hledger && mkdir /.cache && chmod 0777 /.cache
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN apt-get update && apt-get install --yes --no-install-recommends libgmp10 libtinfo6 less nano vim-tiny python3 && apt-get clean && rm -rf /var/lib/apt/lists
+RUN adduser --system --ingroup root hledger && mkdir /.cache && chmod 0777 /.cache
 
 COPY --from=dev /root/.local/bin/hledger* /usr/bin/
 COPY --from=extras /root/.local/bin/hledger-stockquotes /root/.local/bin/hledger-iadd /root/.local/bin/hledger-interest /usr/bin/
