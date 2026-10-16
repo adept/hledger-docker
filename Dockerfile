@@ -6,7 +6,8 @@ ARG GHC_VERSION=9.12.4
 ARG RESOLVER=nightly-2026-08-27
 
 # hledger, hledger-ui, hledger-web and the scripts from hledger's bin/
-FROM haskell:${GHC_VERSION} AS dev
+# -bookworm: the binaries have to run on the bookworm-slim runtime image
+FROM haskell:${GHC_VERSION}-bookworm AS dev
 ARG HLEDGER_VERSION
 
 ENV LC_ALL=C.UTF-8
@@ -27,7 +28,7 @@ RUN cd /build/hledger/bin && \
 # Add-ons from Hackage and git. Only /root/.stack/pantry (Hackage index and
 # package sources) is cached: mounting all of /root/.stack would hide the
 # base image's config.yaml (system-ghc: true).
-FROM haskell:${GHC_VERSION} AS extras
+FROM haskell:${GHC_VERSION}-bookworm AS extras
 ARG RESOLVER
 
 ENV LC_ALL=C.UTF-8
