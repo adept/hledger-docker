@@ -68,7 +68,9 @@ FROM debian:bookworm-slim
 LABEL org.opencontainers.image.authors="Dmitry Astapov <dastapov@gmail.com>"
 
 RUN apt-get update && apt-get install --yes --no-install-recommends libgmp10 libtinfo6 less nano vim-tiny python3 && apt-get clean && rm -rf /var/lib/apt/lists
-RUN adduser --system --ingroup root hledger && mkdir /.cache && chmod 0777 /.cache
+# One writable home for the hledger user and for any uid given with --user
+# (hledger-web, matplotlib etc. write there)
+RUN adduser --system --ingroup root --home /home/hledger hledger && chmod 1777 /home/hledger
 
 COPY --from=dev /root/.local/bin/hledger* /usr/bin/
 COPY --from=extras /root/.local/bin/hledger-stockquotes /root/.local/bin/hledger-iadd /root/.local/bin/hledger-interest /usr/bin/
@@ -76,12 +78,12 @@ COPY --from=pyvenv /usr/app/venv /usr/app/venv
 
 ENV PATH="/usr/app/venv/bin:$PATH" \
     LC_ALL=C.UTF-8 \
-    MPLCONFIGDIR=/tmp/matplotlib
+    HOME=/home/hledger
 
 COPY data /data
 VOLUME /data
 
-EXPOSE 5000 5001
+EXPOSE 5000
 
 COPY start.sh entrypoint.sh /
 
