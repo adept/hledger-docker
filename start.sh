@@ -14,12 +14,12 @@ echo "---------------------------------------------------------------"
 # one environment variable can carry several options (but not glob-expanded)
 set -f
 exec hledger-web \
-     --server \
+     --serve \
      --host="$HLEDGER_HOST" \
      --port="$HLEDGER_PORT" \
      --file="$HLEDGER_JOURNAL_FILE" \
      --debug="$HLEDGER_DEBUG" \
      --base-url="$HLEDGER_BASE_URL" \
-     --rules-file="$HLEDGER_RULES_FILE" \
+     --rules="$HLEDGER_RULES_FILE" \
      --allow="$HLEDGER_ALLOW" \
      $HLEDGER_ARGS "$@"
