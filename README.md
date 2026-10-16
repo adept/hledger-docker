@@ -44,6 +44,9 @@ docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:
 
 and navigate to `http://localhost:5000` for hledger-web
 
+The image also works without `--user`, but then it runs as its own `hledger` user (uid 100), and anything
+written to `/data` (e.g. transactions added via hledger-web) will be owned by uid 100 on the host.
+
 If you have LEDGER_FILE environmed variable defined already, you can try:
 ```
 docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 --user $(id --user) dastapov/hledger
@@ -106,8 +109,8 @@ You can use `docker run` to invoke `hledger` directly:
 docker run --rm -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger hledger -f /data/hledger.journal stats
 ```
 
-Make sure you provide `--rm` argument to `docker run`, otherwise your containers will be kept in the container
-registry even after you are done with them, which is probably not what you want.
+Make sure you provide `--rm` argument to `docker run`, otherwise your containers will be kept as stopped
+containers even after you are done with them, which is probably not what you want.
 
 ### Using image for hledger development
 
